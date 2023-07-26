@@ -1,0 +1,100 @@
+using System;
+using System.Collections.Generic;
+
+
+
+namespace ConsoleApp25
+{
+    class BirthDay
+    {
+        public int day;
+        public int month;
+        public int year;
+    }
+    class Student
+    {
+        public string surname;
+        public string pol;
+        public BirthDay b;
+
+       //public Student(string SurName, string Pol)
+        //{
+        //    string surname = SurName;
+        //    string pol = Pol;
+        //}
+        public void Print()
+        {
+            Console.WriteLine($" ({surname} , {pol} , {b})");
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Student> L = new List<Student>();
+            Console.WriteLine("введите количество строк массива");
+            int n = Convert.ToInt32(Console.ReadLine()); //количество строк
+            for (int i = 0; i < n; i++)
+            {
+                Student A = new Student();
+                Console.WriteLine("Введите фамилию");
+                A.surname = new string(Console.ReadLine());
+                Console.WriteLine("Введите пол");
+                A.pol = new string(Console.ReadLine());
+                Console.WriteLine("Введите день рождения");
+                BirthDay A1 = new BirthDay();
+                A1.day = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите месяц рождения");
+                A1.month = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите год рождения");
+                A1.year = Convert.ToInt32(Console.ReadLine());
+                A.b = A1;
+                L.Add(A);
+            }
+            Console.WriteLine("Полный список студентов");
+            foreach (Student A1 in L)
+            {
+                A1.Print();
+            }
+            L.RemoveAt(0);
+            Console.WriteLine("Список студентов после удаления");
+            foreach (Student A1 in L)
+            {
+                A1.Print();
+            }
+            Student B = new Student();
+            Console.WriteLine("Введите фамилию");
+            B.surname = new string(Console.ReadLine());
+            Console.WriteLine("Введите пол");
+            B.pol = new string(Console.ReadLine());
+            Console.WriteLine("Введите день рождения");
+            BirthDay B1 = new BirthDay();
+            B1.day = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите месяц рождения");
+            B1.month = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите год рождения");
+            B1.year = Convert.ToInt32(Console.ReadLine());
+            B.b = B1;
+            L.Insert(0, B);
+            Console.WriteLine("Список студентов после добавления");
+            foreach (Student A in L)
+            {
+                A.Print();
+            }
+            Console.WriteLine("Введите любую букву");
+            char v = Convert.ToChar(Console.ReadLine());
+            List<Student> C = new List<Student>();
+            foreach (Student A in L)
+            {
+                if (A.surname[0]==v)
+                {
+                    A.Print();
+                }
+                else
+                {
+                    Console.WriteLine("Фамилии студентов на эту букву");
+                }
+            }
+        }
+    }
+}
