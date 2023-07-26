@@ -1,0 +1,83 @@
+using System;
+
+namespace ConsoleApp34
+{
+    class Tarif
+    {
+        public string place;
+        int price;
+        public Tarif(string Place, int Price)
+        {
+            place = Place;
+            price = Price;
+        }
+    }
+    class Vokzal <T>  where T: Tarif
+    {
+        public string name;
+        string pd;
+        public T tarif;
+        public Vokzal(string Name,
+        string Pd,
+        T Tarif)
+        {
+            name = Name;
+            pd = Pd;
+            tarif = Tarif;
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите кол-во тарифов");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Tarif[] mass = new Tarif[n];
+            for (int i=0; i<n; i++)
+            {
+                Console.WriteLine("Введите город");
+                string Place = Console.ReadLine();
+                Console.WriteLine("Введите стоимость");
+                int Price = Convert.ToInt32(Console.ReadLine());
+                mass[i] = new Tarif(Place, Price);
+            }
+            Console.WriteLine("Введите кол-во купленых билетов");
+            int N1 = Convert.ToInt32(Console.ReadLine());
+            Vokzal<Tarif>[] vokz = new Vokzal<Tarif>[N1];
+            for (int i = 0; i < N1; i++)
+            {
+                Console.WriteLine("Введите фамилию");
+                string Name = Console.ReadLine();
+                Console.WriteLine("Введите паспортные данные");
+                string Pd = Console.ReadLine();
+                for (int j=0; j<n; j++)
+                {
+                    Console.WriteLine($"Введите {j} , если {mass[j].place}");
+                }
+                Console.WriteLine("Введите город");
+                int City = Convert.ToInt32(Console.ReadLine());
+                vokz[i] = new Vokzal<Tarif>(Name, Pd, mass[City]);
+            }
+            Console.WriteLine("Введите нужного пассажира");
+            string person = Console.ReadLine();
+            int k = 0;
+            for (int i = 0; i<N1; i++)
+            {
+                if (vokz[i].name == person)
+                {
+                    k++;
+                }
+            }
+            Console.WriteLine(k);
+            Console.WriteLine("Введите нужное направление");
+            string town = Console.ReadLine();
+            for (int i = 0; i < N1; i++)
+            {
+                if (vokz[i].tarif.place == town)
+                {
+                    Console.WriteLine(vokz[i].name);
+                }
+            }
+        }
+    }
+}
