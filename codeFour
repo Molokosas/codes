@@ -1,0 +1,77 @@
+using System;
+
+
+namespace ConsoleApp66
+{
+    class Tarif
+    {
+        public string name;
+        public int price;
+        public Tarif(string Name,
+        int Price)
+        {
+            name = Name;
+            price = Price;
+        }
+        public Tarif(Tarif T1)
+        {
+            this.name = T1.name;
+            this.price = T1.price;
+        }
+    }
+
+
+   class Vokzal<T> where T : Tarif
+    {
+        public T tarif;
+        public int skidka;
+        public Vokzal(T T1, int t)
+        {
+            tarif = T1;
+            skidka = t;
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("сколько тарифов");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Tarif[] Mastarif = new Tarif[n];
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine("Название");
+                string Name = Console.ReadLine();
+                Console.WriteLine("Цена");
+                int Price = Convert.ToInt32(Console.ReadLine());
+                Mastarif[i] = new Tarif(Name, Price);
+            }
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine($"{Mastarif[i].name}   {Mastarif[i].price}");
+            }
+            Vokzal<Tarif>[] V = new Vokzal<Tarif>[n];
+            Console.WriteLine("Введите количество тарифов");
+            int t = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите процент скидки");
+            int r = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+            {
+                if (t == 1)
+                {
+                    V[i] = new Vokzal<Tarif>(Mastarif[0], r);
+                    V[i].tarif = new Tarif(Mastarif[0]);
+                }
+                else
+                {
+                    V[i] = new Vokzal<Tarif>(Mastarif[1], r);
+                    V[i].tarif = new Tarif(Mastarif[1]);
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine($"{V[i].tarif.name}   {V[i].tarif.price}  {V[i].skidka}");
+            }
+        }
+    }
+}
