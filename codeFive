@@ -133,3 +133,49 @@ namespace ConsoleApp48
     {
         int cena { get; set; }
         void Print();
+    }
+    interface OffRoad
+    {
+        int cena { get; set; }
+        void Print();
+    }
+    interface Special
+    {
+        int cena { get; set; }
+        void Print();
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Autos A = new Autos();
+            Console.WriteLine("Введите марку");
+            string Marka = Console.ReadLine();
+            Console.WriteLine("Введите мощность");
+            string Moshnost = Console.ReadLine();
+            Console.WriteLine("Введите цену");
+            int Cena = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите габариты");
+            string Buingpossibility = Console.ReadLine();
+            A = new Autos(Marka, Moshnost, Cena, Buingpossibility);
+            if (Cena < 1800000)
+            {
+                OffRoad A1 = A;
+                A1.Print();
+            }
+            else
+            {
+                if (Cena > 700000000)
+                {
+                    Special A1 = A;
+                    A1.Print();
+                }
+                else
+                {
+                    Sport A1 = A;
+                    A1.Print();
+                }
+            }
+        }
+    }
+}\
