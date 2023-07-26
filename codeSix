@@ -1,0 +1,135 @@
+using System;
+
+namespace ConsoleApp59
+{
+    enum Country
+    {
+        Germany,
+        USA,
+        Brazil,
+        Russia
+    }
+    enum Team
+    {
+        Qwerty,
+        Wertyu,
+        Ertyui,
+        Rtyuio,
+        Tyuiop
+    }
+
+   class Sportsmen
+    {
+        string name;
+        string surname;
+        string lastname;
+        int age;
+        int number;
+        int height;
+        int weight;
+        Team team;
+        Country count;
+
+       public Sportsmen()
+        {
+                
+        }
+        public Sportsmen(string Name, string SurName, string LastName, int Age, int Number, int Height, int Weight, Team T, Country C)
+        {
+            name = Name;
+            surname = SurName;
+            lastname = LastName;
+            age = Age;
+            number = Number;
+            height = Height;
+            weight = Weight;
+            team = T;
+            count = C;
+        }
+
+       public void Print()
+        {
+            Console.WriteLine($"{name}  {surname}  {lastname}  {age}  {number}  {height}  {weight}  {team}  {count}");
+        }
+
+       public void FindSurname()
+        {
+            if (age >= 20)
+            {
+                Console.WriteLine($"{surname}");
+            }
+            
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите количество спортсменов");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Sportsmen[] Mass = new Sportsmen[n];
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine("Введите имя");
+                string Name = Console.ReadLine();
+                Console.WriteLine("Введите фамилию");
+                string SurName = Console.ReadLine();
+                Console.WriteLine("Введите отчество");
+                string LastName = Console.ReadLine();
+                Console.WriteLine("Введите возраст");
+                int Age = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите номер команды");
+                int Number = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите рост спортсмена");
+                int Height = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите вес спортсмена");
+                int Weight = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите страну спортсмена");
+                Team T = Team.Qwerty;
+                Console.WriteLine("Введите 0 - \"Германия\", 1 - \"Сша\", 2 - \"Бразилия\", 3 - \"Россия\"");
+                int n1 = Convert.ToInt32(Console.ReadLine());
+                Country C = Country.Germany;
+                switch (n1)
+                {
+                    case 0:
+                        {
+                            C = Country.Germany;
+                            break;
+                        }
+                    case 1:
+                        {
+                            C = Country.USA;
+                            break;
+                        }
+                    case 2:
+                        {
+                            C = Country.Brazil;
+                            break;
+                        }
+                    case 3:
+                        {
+                            C = Country.Russia;
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("введена несуществующая страна");
+                            break;
+
+                       }
+                }
+                Mass[i] = new Sportsmen(Name, SurName, LastName, Age, Number, Height, Weight, T, C);
+            }
+            for (int i = 0; i < n; i++)
+            {
+                Mass[i].Print();
+            }
+
+           for (int i = 0; i < n; i++)
+            {
+                Mass[i].FindSurname();
+            }
+
+       }
+    }
+}
