@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+ 
+namespace WindowsFormsApp62
+{
+    public partial class Form1 : Form
+    {
+        class Student
+        {
+            string name;
+            string surname;
+            DateTime d;
+            public Student(string Name, string Surname, DateTime D)
+            {
+                name = Name;
+                surname = Surname;
+                d = D;
+            }
+ 
+            public int Find(int s)
+            {
+                if(d.Month ==11)
+                {
+                    return s + 1;
+                }
+                return s;
+            }
+        }
+        List<Student> list = new List<Student>();
+        int i = 0;
+        int s = 0;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+ 
+        private void button1_Click(object sender, EventArgs e)
+        {
+                string Name = textBox2.Text;
+                string Surname = textBox1.Text;
+                DateTime D = dateTimePicker1.Value;
+                Student Mas = new Student(Name, Surname, D);
+            list.Add(Mas);
+                textBox1.Text = "";
+                textBox2.Text = "";
+         
+        }
+ 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            s = 0;
+            foreach (Student Mas in list) 
+            {
+                s = Mas.Find(s);
+            }
+            label4.Text = s.ToString();
+        }
+    }
+}
+ 
